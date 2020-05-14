@@ -12,7 +12,8 @@ class App extends Component {
   } 
 
   handleDeletePerson = (personIndex) => {
-    const persons = this.state.persons;
+    // const persons = this.state.persons.slice();
+    const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
     this.setState({persons: persons});
   }
@@ -20,9 +21,9 @@ class App extends Component {
   handleNameChanged = (event) => {
     this.setState({
       persons: [
-        { name: 'Max', age: 28 },
-        { name: event.target.value, age: 29 },
-        { name: 'Lester', age: 45 }
+        { id: '1', name: 'Max', age: 28 },
+        { id: '2', name: event.target.value, age: 29 },
+        { id: '3', name: 'Lester', age: 45 }
       ]
     })
   }
@@ -50,7 +51,8 @@ class App extends Component {
             return <Person 
             click={() => this.handleDeletePerson(index)}
             name={person.name}
-            age={person.age}/>
+            age={person.age}
+            key={person.id} />
           })}
         </div>
       );
