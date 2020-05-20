@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import styled from 'styled-components';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -9,8 +8,10 @@ class App extends Component {
       { id: 'A', name: 'Max', age: 28 },
       { id: 'B', name: 'Manu', age: 29 },
       { id: 'C', name: 'Lester', age: 26 }
-    ]
-  } 
+    ],
+    otherState: 'some other value',
+    showPersons: false
+  }; 
 
   handleDeletePerson = (personIndex) => {
     // const persons = this.state.persons.slice();
@@ -45,18 +46,7 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor:'green',
-      font:'inherit',
-      border:'1px solid blue',
-      padding:'8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
-
+    let btnClass = '';
     let persons = null;
 
     if (this.state.showPersons) {
@@ -73,11 +63,7 @@ class App extends Component {
         </div>
       );
 
-      // style.backgroundColor = 'red';
-      // style[':hover'] = {
-      //   backgroundColor: 'salmon',
-      //   color: 'black'
-      // }
+      btnClass = classes.Red;
     }
 
     const assignedClasses = [];
@@ -94,7 +80,7 @@ class App extends Component {
         <h1>Hi, I'm a React App</h1>
         <p className={assignedClasses.join(' ')}>It's really working!</p>
         <button 
-          className={classes.button}
+          className={btnClass}
           alt={this.state.showPersons}
           onClick={() => this.handleTogglePersons("Maximillian!!")}>Hide Name</button>
         {persons}
